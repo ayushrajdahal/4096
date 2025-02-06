@@ -21,8 +21,8 @@ def main():
                         help='model name, options: [Autoformer, Informer, Transformer]')
 
     # data loader
-    parser.add_argument('--data', type=str, required=True, default='ETTm1', help='dataset type')
-    parser.add_argument('--root_path', type=str, default='./data/ETT-small/', help='root path of the data file')
+    parser.add_argument('--data', type=str, required=True, default='ETTh1', help='dataset type')
+    parser.add_argument('--root_path', type=str, default='./datasets/ETT-small/', help='root path of the data file')
     parser.add_argument('--data_path', type=str, default='ETTh1.csv', help='data file')
     parser.add_argument('--features', type=str, default='M',
                         help='forecasting task, options:[M, S, MS]; M:multivariate predict multivariate, S:univariate predict univariate, MS:multivariate predict univariate')
@@ -76,6 +76,10 @@ def main():
     parser.add_argument('--gpu', type=int, default=0, help='gpu')
     parser.add_argument('--use_multi_gpu', action='store_true', help='use multiple gpus', default=False)
     parser.add_argument('--devices', type=str, default='0,1,2,3', help='device ids of multile gpus')
+
+    # CUSTOM
+    parser.add_argument('--optimizer', type=str, default='adam', help='specify optimizer (refer to exp/exp_main.py to see options).')
+    parser.add_argument('--scaler_name', type=str, default='standard', help='type of scaler to use')
 
     args = parser.parse_args()
 

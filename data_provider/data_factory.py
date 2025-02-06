@@ -25,7 +25,7 @@ def data_provider(args, flag:str):
         drop_last = False
     
     data_set = Data(
-        args=args,
+        # args=args,
         root_path=args.root_path,
         data_path=args.data_path,
         flag=flag,
@@ -34,8 +34,8 @@ def data_provider(args, flag:str):
         target=args.target,
         timeenc=timeenc,
         freq=freq,
-        seasonal_patterns=args.seasonal_patterns, # NOTE: iTransformer doesn't have this.
-        scaler_name=args.scaler_name,
+        # seasonal_patterns=args.seasonal_patterns, # NOTE: iTransformer doesn't have this.
+        # scaler_name=args.scaler_name,
     )
 
     print(flag, len(data_set))
