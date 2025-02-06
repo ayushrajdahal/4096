@@ -7,7 +7,7 @@ from utils.timefeatures import time_features
 from utils.custom_timefeatures import custom_time_features # alternate time features that use sine-cosine.
 
 class Dataset_Energy_hour(Dataset):
-    def __init__(self, root_path, flag='train', size=None, 
+    def __init__(self, root_path="./datasets/Energy/", flag='train', size=None, 
                  features='S', data_path='load_forecasting.csv',
                  target='nat_demand', scale=True, timeenc=0, freq='h', scaler_name='standard'): # NOTE: scaler_name isn't passed in the referenced variation
         if size == None:
@@ -118,7 +118,7 @@ class Dataset_Energy_hour(Dataset):
 
 
 class Dataset_ETT_hour(Dataset):
-    def __init__(self, root_path, flag='train', size=None,
+    def __init__(self, root_path="./datasets/ETT-small/", flag='train', size=None,
                  features='S', data_path='ETTh1.csv',
                  target='OT', scale=True, timeenc=0, freq='h'):
         # size [seq_len, label_len, pred_len]
