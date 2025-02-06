@@ -1,5 +1,5 @@
 from data_provider.data_loader import Dataset_Energy_hour, Dataset_ETT_hour
-from torch.utils import DataLoader
+from torch.utils.data import DataLoader
 
 data_dict = {
     'energy': Dataset_Energy_hour,
@@ -9,7 +9,7 @@ data_dict = {
 def data_provider(args, flag:str):
     Data = data_dict[args.data]
     
-    timeenc = 0 if args.embed != 'timeF' else 1
+    timeenc = 0 if args.embed != 'timeF' else 1     # timeenc = 1 uses [-0.5,0.5] and timeenc = 0 uses integer values for month, year, etc.
     
     # NOTE:
     # timeF stands for "time features". It is used to determine the type of embedding for temporal data. 
@@ -20,8 +20,6 @@ def data_provider(args, flag:str):
     drop_last = False               # whether to drop the last incomplete batch
     batch_size = args.batch_size    # batch size of the dataloader
     freq = args.freq                # frequency of the data --  TODO: what does it mean?
-
-    # TODO: add logic for anomaly detection, classification, etc.
 
     if args.data == 'm4': # m4 benchmark dataset: https://paperswithcode.com/dataset/m4
         drop_last = False
@@ -36,7 +34,8 @@ def data_provider(args, flag:str):
         target=args.target,
         timeenc=timeenc,
         freq=freq,
-        seasonal_patterns=args.seasonal_patterns
+        seasonal_patterns=args.seasonal_patterns, # NOTE: iTransformer doesn't have this.
+        scaler_name=args.scaler_name,
     )
 
     print(flag, len(data_set))
