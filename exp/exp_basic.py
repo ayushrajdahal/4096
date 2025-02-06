@@ -1,7 +1,7 @@
 # Import necessary libraries
 import os
 import torch
-from models import Transformer
+from models import Transformer, Autoformer
 
 # Define the Exp_Basic class
 class Exp_Basic(object):
@@ -12,6 +12,7 @@ class Exp_Basic(object):
         # Dictionary to hold model mappings
         self.model_dict = {
             'transformer': Transformer,
+            'autoformer': Autoformer
         }
         
         # Acquire the device (CPU or GPU)
